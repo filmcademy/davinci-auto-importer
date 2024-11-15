@@ -6,14 +6,25 @@ class ResolveManager:
         self._initialize_resolve()
         
     def _initialize_resolve(self):
-        # Add DaVinci Resolve scripting module path
+        # Add DaVinci Resolve scripting module path based on OS
         if sys.platform.startswith("win"):
             resolve_script_path = os.path.join(
                 os.environ.get("PROGRAMDATA", ""),
                 "Blackmagic Design\\DaVinci Resolve\\Support\\Developer\\Scripting\\Modules\\"
             )
-            if resolve_script_path not in sys.path:
-                sys.path.append(resolve_script_path)
+        elif sys.platform.startswith("darwin"):  # macOS
+            resolve_script_path = "/Library/Application Support/Blackmagic Design/DaVinci Resolve/Developer/Scripting/Modules/"
+        elif sys.platform.startswith("linux"):
+            # Try both possible Linux paths
+            standard_path = "/opt/resolve/Developer/Scripting/Modules/"
+            alt_path = "/home/resolve/Developer/Scripting/Modules/"
+            resolve_script_path = standard_path if os.path.exists(standard_path) else alt_path
+        else:
+            print(f"Unsupported operating system: {sys.platform}")
+            sys.exit(1)
+
+        if resolve_script_path not in sys.path:
+            sys.path.append(resolve_script_path)
         
         try:
             import DaVinciResolveScript as dvr_script
