@@ -18,10 +18,10 @@ class UIManager:
         self.page.title = "DaVinci Resolve Auto-Import"
         self.page.padding = 20
         self.page.theme_mode = ft.ThemeMode.DARK
-        self.page.window_width = 600
-        self.page.window_height = 800
-        self.page.window_min_width = 400
-        self.page.window_min_height = 600
+        self.page.window.width = 600
+        self.page.window.height = 800
+        self.page.window.min_width = 400
+        self.page.window.min_height = 600
         
         # Create a container for file items
         self.files_column = ft.Column(

@@ -30,11 +30,11 @@ class AutoImportApp:
         # Set the window icon
         page.window_icon = "assets/icon.ico"
         # Set other window properties
-        page.window_width = 600
-        page.window_height = 800
-        page.window_resizable = True
-        page.window_maximizable = True
-        page.window_minimizable = True
+        page.window.width = 600
+        page.window.height = 800
+        page.window.resizable = True
+        page.window.maximizable = True
+        page.window.minimizable = True
         
         self.ui_manager.initialize_page(page)
         self.ui_manager.setup_folder_picker()
