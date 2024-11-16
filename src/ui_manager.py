@@ -38,11 +38,18 @@ class UIManager:
             text_align=ft.TextAlign.CENTER,
         )
 
-        # Add connection status and refresh button
+        # Add connection status and refresh button with initial state
+        if self.app.resolve_manager.is_connected:
+            initial_status = "✅ Connected to DaVinci Resolve"
+            initial_color = ft.colors.GREEN_400
+        else:
+            initial_status = "⚠️ DaVinci Resolve is not running"
+            initial_color = ft.colors.ORANGE_400
+
         self.connection_status = ft.Text(
-            "⚠️ DaVinci Resolve is not running",
+            initial_status,
             size=16,
-            color=ft.colors.ORANGE_400,
+            color=initial_color,
             text_align=ft.TextAlign.CENTER,
         )
 

@@ -9,6 +9,8 @@ class AutoImportApp:
         self.resolve_manager = ResolveManager()
         self.file_handler = FileEventHandler(self)
         self.ui_manager = UIManager(self)
+        # Check initial connection status
+        self.resolve_manager.try_connect()
 
     def add_new_file(self, file_path):
         def validate_callback():
