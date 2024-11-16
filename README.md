@@ -1,6 +1,15 @@
-# DaVinci Resolve Auto-Import
+# DaVinci Resolve Auto-Importer
 
-A Python application that automatically monitors a folder and imports new media files directly into DaVinci Resolve's timeline.
+A simple tool to **make your recording workflow faster**.
+Every time you save a video you have the option to import it into DaVinci Resolve or move it to the trash.
+
+## How it works
+1. In OBS (or any other software), set a folder where you want to save your recordings.
+2. Start running the app.
+3. Select as monitored folder the folder you set in OBS.
+4. Every time you save a recording in OBS, you will have 2 choices:
+    - Validate: The file will be added to DaVinci Resolve's timeline.
+    - Trash: The file will be moved to the trash folder.
 
 ## Features
 
@@ -19,19 +28,13 @@ A Python application that automatically monitors a folder and imports new media 
 
 ## Prerequisites
 
-- DaVinci Resolve Studio (or Free version)
-- Python 3.x installed
-- DaVinci Resolve's Scripting API enabled
+- DaVinci Resolve Studio (or Free version but not tested yet)
+- Python installed
+- DaVinci Resolve's Scripting API enabled (see below)
 
-### Setting up DaVinci Resolve Scripting
+### Setting up DaVinci Resolve Scripting API
 
 1. Open DaVinci Resolve
 2. Go to Preferences > System > General
-3. Enable "External Scripting Using" option
-
-## Installation
-
-1. Clone this repository:
-2. 
-3. git clone https://github.com/yourusername/davinci-auto-import.git
-4. cd davinci-auto-import
+3. Set "External Scripting Using" to "Local"
+![enable external scripting](https://i.imgur.com/pKpIg0v.png)
