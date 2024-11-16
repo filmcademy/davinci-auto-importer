@@ -56,7 +56,8 @@ class UIManager:
         self.refresh_button = ft.IconButton(
             icon=ft.icons.REFRESH,
             tooltip="Check DaVinci Resolve Connection",
-            on_click=self._check_resolve_connection
+            on_click=self._check_resolve_connection,
+            icon_color=ft.colors.GREY_400,
         )
 
         self.connection_row = ft.Row(
@@ -81,7 +82,10 @@ class UIManager:
         # Create header with logo/title
         header = ft.Container(
             content=ft.Column([
-                ft.Icon(ft.icons.MOVIE_FILTER_ROUNDED, size=64, color=ft.colors.BLUE_400),
+                ft.Image(
+                    src="assets/logo.ico",
+                    width=300,
+                ),
                 ft.Text("DaVinci Resolve Auto-Import", size=24, weight=ft.FontWeight.BOLD),
             ], horizontal_alignment=ft.CrossAxisAlignment.CENTER),
             margin=ft.margin.only(bottom=20),
@@ -91,8 +95,8 @@ class UIManager:
         select_folder_btn = ft.ElevatedButton(
             content=ft.Row(
                 [
-                    ft.Icon(ft.icons.FOLDER_OPEN),
-                    ft.Text("Select Folder", size=16),
+                    ft.Icon(ft.icons.FOLDER_OPEN, color=ft.colors.GREY_400),
+                    ft.Text("Select Folder", size=16, color=ft.colors.GREY_400),
                 ],
                 alignment=ft.MainAxisAlignment.CENTER,
             ),
@@ -126,8 +130,8 @@ class UIManager:
             content=ft.Container(
                 content=ft.Column([
                     ft.ListTile(
-                        leading=ft.Icon(ft.icons.VIDEO_FILE, color=ft.colors.BLUE_400),
-                        title=ft.Text(os.path.basename(file_path), size=16),
+                        leading=ft.Icon(ft.icons.VIDEO_FILE, color=ft.colors.WHITE),
+                        title=ft.Text(os.path.basename(file_path), size=16, color=ft.colors.WHITE),
                         subtitle=ft.Text(
                             os.path.dirname(file_path),
                             size=12,
