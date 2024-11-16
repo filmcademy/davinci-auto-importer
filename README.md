@@ -1,7 +1,8 @@
 # DaVinci Resolve Auto-Importer
-
 A simple tool to **make your recording workflow faster**.
-Every time you save a video you have the option to import it into DaVinci Resolve or move it to the trash.
+Every time you save a video you have the option to **import it into DaVinci Resolve** or **move it to the trash**.
+
+<img src="https://i.imgur.com/9OIU1mo.png" data-canonical-src="https://i.imgur.com/9OIU1mo.png" width="350" />
 
 ## How it works
 1. In OBS (or any other software), set a folder where you want to save your recordings.
