@@ -65,10 +65,9 @@ class ResolveManager:
             return False
             
         print(f"Validating file: {file_path}")
-        file_list = [file_path]
-        print(f"Attempting to add {file_list} to media pool.")
         
-        added_items = self.media_storage.AddItemListToMediaPool(file_list)
+        # Use ImportMedia instead of AddItemListToMediaPool
+        added_items = self.media_pool.ImportMedia([file_path])
         if not added_items:
             print(f"Failed to add {file_path} to media pool.")
             return False
@@ -87,7 +86,7 @@ class ResolveManager:
                 return False
         else:
             print("Timeline exists. Appending clip to the timeline.")
-            success = self.media_pool.AppendToTimeline(added_items)
+            success = self.media_pool.AppendToTimeline(added_items)  # Use added_items instead of [file_path]
             if success:
                 print(f"Added {file_path} to timeline.")
                 return True
