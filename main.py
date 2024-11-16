@@ -2,10 +2,11 @@ import flet as ft
 from src.ui_manager import UIManager
 from src.file_handler import FileEventHandler
 from src.resolve_manager import ResolveManager
-import os
+from src.settings_manager import SettingsManager
 
 class AutoImportApp:
     def __init__(self):
+        self.settings_manager = SettingsManager()
         self.resolve_manager = ResolveManager()
         self.file_handler = FileEventHandler(self)
         self.ui_manager = UIManager(self)

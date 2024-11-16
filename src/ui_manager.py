@@ -64,6 +64,13 @@ class UIManager:
             alignment=ft.MainAxisAlignment.CENTER,
         )
 
+        # After initialization, check for last folder
+        last_folder = self.app.settings_manager.get_last_folder()
+        if last_folder and os.path.exists(last_folder):
+            self._start_monitoring(last_folder)
+            self.status_text.value = f"Monitoring: {last_folder}"
+            self.status_text.color = ft.colors.GREEN_400
+
     def setup_folder_picker(self):
         folder_picker = ft.FilePicker(
             on_result=self._handle_folder_selection
@@ -159,6 +166,8 @@ class UIManager:
             self._start_monitoring(e.path)
             self.status_text.value = f"Monitoring: {e.path}"
             self.status_text.color = ft.colors.GREEN_400
+            # Save the selected folder
+            self.app.settings_manager.save_last_folder(e.path)
             self.page.update()
 
     def _handle_validate(self, callback, controls):

@@ -54,3 +54,5 @@ ENV/
 
 build/**
 dist/**
+
+settings.json
