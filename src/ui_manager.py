@@ -9,6 +9,9 @@ class UIManager:
         self.status_text = None
         self.observer = None
         self.files_column = None
+        self.connection_status = None
+        self.refresh_button = None
+        self.connection_row = None
 
     def initialize_page(self, page: ft.Page):
         self.page = page
@@ -33,6 +36,25 @@ class UIManager:
             size=16,
             color=ft.colors.GREY_500,
             text_align=ft.TextAlign.CENTER,
+        )
+
+        # Add connection status and refresh button
+        self.connection_status = ft.Text(
+            "⚠️ DaVinci Resolve is not running",
+            size=16,
+            color=ft.colors.ORANGE_400,
+            text_align=ft.TextAlign.CENTER,
+        )
+
+        self.refresh_button = ft.IconButton(
+            icon=ft.icons.REFRESH,
+            tooltip="Check DaVinci Resolve Connection",
+            on_click=self._check_resolve_connection
+        )
+
+        self.connection_row = ft.Row(
+            [self.connection_status, self.refresh_button],
+            alignment=ft.MainAxisAlignment.CENTER,
         )
 
     def setup_folder_picker(self):
@@ -66,12 +88,13 @@ class UIManager:
             on_click=lambda _: folder_picker.get_directory_path()
         )
 
-        # Main content layout
+        # Update the main content layout to include connection status
         self.page.add(
             ft.Container(
                 content=ft.Column(
                     [
                         header,
+                        self.connection_row,  # Add connection status and refresh button
                         select_folder_btn,
                         self.status_text,
                         ft.Divider(height=2, color=ft.colors.GREY_700),
@@ -145,3 +168,12 @@ class UIManager:
         self.observer = Observer()
         self.observer.schedule(self.app.file_handler, folder_path, recursive=False)
         self.observer.start()
+
+    def _check_resolve_connection(self, _):
+        if self.app.resolve_manager.try_connect():
+            self.connection_status.value = "✅ Connected to DaVinci Resolve"
+            self.connection_status.color = ft.colors.GREEN_400
+        else:
+            self.connection_status.value = "⚠️ DaVinci Resolve is not running"
+            self.connection_status.color = ft.colors.ORANGE_400
+        self.page.update()
